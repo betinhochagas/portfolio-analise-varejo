@@ -1,0 +1,3 @@
+# Dependencias da camada de Engenharia de Dados (Fase 1 - carga no BigQuery).
+# Instale num passo separado:  pip install -r requirements-bigquery.txt
+google-cloud-bigquery==3.25.0
