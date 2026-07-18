@@ -1,0 +1,46 @@
+name: CI
+
+# Validacao a cada Pull Request e push na main.
+# NAO precisa de credenciais: `dbt parse` valida refs/sources/macros sem
+# conectar ao BigQuery.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  dbt-validate:
+    name: Validar projeto dbt (parse)
+    runs-on: ubuntu-latest
+    env:
+      GCP_PROJECT_ID: ci-dummy-project        # parse nao conecta; valor ficticio
+      DBT_PROFILES_DIR: ${{ github.workspace }}/ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Instalar dbt-bigquery
+        run: pip install dbt-bigquery==1.8.2
+      - name: dbt deps
+        working-directory: dbt
+        run: dbt deps
+      - name: dbt parse (valida refs, sources e macros)
+        working-directory: dbt
+        run: dbt parse
+
+  sqlfluff:
+    name: Lint SQL (sqlfluff)
+    runs-on: ubuntu-latest
+    # Informativo por enquanto: o lint total de models com macros do dbt_utils
+    # exige o templater dbt. Deixamos nao-bloqueante ate configurar isso.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Instalar sqlfluff
+        run: pip install sqlfluff==3.1.0
+      - name: Lint dos models
+        run: sqlfluff lint dbt/models

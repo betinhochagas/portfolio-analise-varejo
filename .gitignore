@@ -28,6 +28,14 @@ dbt/profiles.yml
 orchestration/.env
 orchestration/logs/
 
+# Terraform (Fase 5)
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/*.tfvars
+!infra/*.tfvars.example
+infra/crash.log
+
 # Credenciais / chaves de servico (NUNCA versionar)
 *-key.json
 *_key.json

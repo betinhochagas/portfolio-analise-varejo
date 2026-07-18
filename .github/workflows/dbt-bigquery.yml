@@ -1,0 +1,38 @@
+name: dbt build (BigQuery)
+
+# Roda o pipeline dbt DE VERDADE contra o BigQuery (run + test).
+# Executa sob demanda (botao "Run workflow"). Opcionalmente, descomente o
+# schedule para rodar diariamente.
+#
+# Requer configurar no repositorio (Settings -> Secrets and variables -> Actions):
+#   - Secret  GCP_SA_KEY      : JSON da service account com acesso ao BigQuery
+#   - Variable GCP_PROJECT_ID : id do seu projeto GCP
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "0 6 * * *"   # todo dia as 06:00 UTC
+
+jobs:
+  build:
+    name: dbt run + test
+    runs-on: ubuntu-latest
+    env:
+      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+      DBT_PROFILES_DIR: ${{ github.workspace }}/ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Autenticar no Google Cloud (service account)
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Instalar dbt-bigquery
+        run: pip install dbt-bigquery==1.8.2
+      - name: dbt deps
+        working-directory: dbt
+        run: dbt deps
+      - name: dbt build (models + testes)
+        working-directory: dbt
+        run: dbt build

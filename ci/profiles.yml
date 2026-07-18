@@ -1,0 +1,14 @@
+# Perfil dbt usado no CI (GitHub Actions). DBT_PROFILES_DIR aponta para ./ci.
+# `dbt parse` nao conecta ao BigQuery, entao um project_id ficticio basta.
+# O workflow opcional de build usa uma service account (via GOOGLE_APPLICATION_CREDENTIALS).
+varejo:
+  target: ci
+  outputs:
+    ci:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
+      dataset: varejo_dbt
+      location: US
+      threads: 4
+      timeout_seconds: 300

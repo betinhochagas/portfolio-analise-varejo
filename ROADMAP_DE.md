@@ -105,7 +105,7 @@ Demonstra os 5 pilares. Terraform / Docker / streaming são "cerejas" para depoi
 - [~] Fase 2 — dbt (staging → marts + testes + docs/lineage) — **scaffolding pronto** em `dbt/`, falta rodar após a Fase 1
 - [ ] Fase 3 — Ingestão de fonte real (dlt, carga incremental idempotente)
 - [~] Fase 4 — Orquestração (Airflow/Dagster via Docker) — **scaffolding pronto** em `orchestration/`, falta rodar após as Fases 1–2
-- [ ] Fase 5 — CI/CD (GitHub Actions) + Terraform + Docker
+- [~] Fase 5 — CI/CD (GitHub Actions) + Terraform + Docker — **scaffolding pronto** (`.github/workflows/`, `infra/`); Docker já na Fase 4
 - [ ] Fase 6 — Diferenciais (streaming, Spark, observabilidade)
 
 ---
