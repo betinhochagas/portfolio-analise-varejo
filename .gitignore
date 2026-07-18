@@ -24,6 +24,10 @@ dbt/dbt_packages/
 dbt/logs/
 dbt/profiles.yml
 
+# Airflow / Docker (Fase 4)
+orchestration/.env
+orchestration/logs/
+
 # Credenciais / chaves de servico (NUNCA versionar)
 *-key.json
 *_key.json

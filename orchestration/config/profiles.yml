@@ -1,0 +1,14 @@
+# Perfil dbt usado DENTRO do container do Airflow (DBT_PROFILES_DIR aponta aqui).
+# Sem segredos: autenticacao OAuth via ADC (arquivo montado em /opt/airflow/gcp/adc.json,
+# exposto pela variavel GOOGLE_APPLICATION_CREDENTIALS).
+varejo:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
+      dataset: varejo_dbt
+      location: US
+      threads: 4
+      timeout_seconds: 300
