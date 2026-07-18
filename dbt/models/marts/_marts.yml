@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: dim_produto
+    description: "Dimensao Produto (um registro por produto)."
+    columns:
+      - name: produto_id
+        description: "Chave do produto."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_local
+    description: "Dimensao Local (regiao + cidade), com chave substituta."
+    columns:
+      - name: local_sk
+        description: "Surrogate key (hash de regiao + cidade)."
+        data_tests:
+          - unique
+          - not_null
+      - name: regiao
+        description: "Regiao do Brasil."
+        data_tests:
+          - accepted_values:
+              values: ["Sudeste", "Sul", "Nordeste", "Norte", "Centro-Oeste"]
+
+  - name: dim_tempo
+    description: "Dimensao Tempo (um registro por data de venda)."
+    columns:
+      - name: data_venda
+        description: "Data da venda (chave da dimensao)."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: fct_vendas
+    description: "Fato Vendas — grao de uma linha por venda."
+    columns:
+      - name: venda_id
+        description: "Chave do fato."
+        data_tests:
+          - unique
+          - not_null
+      - name: produto_id
+        description: "FK para dim_produto."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_produto')
+              field: produto_id
+      - name: local_sk
+        description: "FK para dim_local."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_local')
+              field: local_sk
+      - name: data_venda
+        description: "FK para dim_tempo."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_tempo')
+              field: data_venda

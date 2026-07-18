@@ -1,0 +1,17 @@
+# Copie para  ~/.dbt/profiles.yml  (Windows: C:\Users\<voce>\.dbt\profiles.yml)
+# ou aponte o dbt para esta pasta:  $env:DBT_PROFILES_DIR = "."
+#
+# Usa autenticacao OAuth via Application Default Credentials (a mesma da Fase 1:
+#   gcloud auth application-default login). Nenhuma chave/segredo fica no arquivo.
+
+varejo:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
+      dataset: varejo_dbt          # dataset default (staging/marts sobrescrevem)
+      location: US                 # deve bater com o BQ_LOCATION da Fase 1
+      threads: 4
+      timeout_seconds: 300

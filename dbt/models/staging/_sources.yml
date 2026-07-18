@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: varejo_raw
+    description: "Camada bronze (raw) carregada da Fase 1 — dado cru, como chegou."
+    schema: varejo_raw          # dataset criado por scripts/04_carregar_bigquery.py
+    tables:
+      - name: raw_vendas
+        description: "Vendas de varejo tratadas, uma linha por venda."
+        columns:
+          - name: venda_id
+            description: "Identificador unico da venda (grao da tabela)."
+            data_tests:
+              - unique
+              - not_null

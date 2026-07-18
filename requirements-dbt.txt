@@ -1,0 +1,3 @@
+# Dependencias da Fase 2 (transformacao com dbt no BigQuery).
+# Instale num passo separado:  pip install -r requirements-dbt.txt
+dbt-bigquery==1.8.2

@@ -102,7 +102,7 @@ Demonstra os 5 pilares. Terraform / Docker / streaming são "cerejas" para depoi
 
 - [ ] Fase 0 — Reposicionamento (estrutura + README de arquitetura)
 - [ ] Fase 1 — BigQuery como DWH (dataset `raw` carregado)
-- [ ] Fase 2 — dbt (staging → marts + testes + docs/lineage)
+- [~] Fase 2 — dbt (staging → marts + testes + docs/lineage) — **scaffolding pronto** em `dbt/`, falta rodar após a Fase 1
 - [ ] Fase 3 — Ingestão de fonte real (dlt, carga incremental idempotente)
 - [ ] Fase 4 — Orquestração (Airflow/Dagster via Docker)
 - [ ] Fase 5 — CI/CD (GitHub Actions) + Terraform + Docker

@@ -1,0 +1,28 @@
+name: "varejo"
+version: "1.0.0"
+config-version: 2
+
+# Perfil de conexao (definido em profiles.yml — ver profiles.yml.example)
+profile: "varejo"
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Materializacao por camada (medallion):
+#   staging = views  (leves, 1:1 com a fonte)
+#   marts   = tables (modelo estrela, consumido pelo BI)
+models:
+  varejo:
+    staging:
+      +materialized: view
+      +schema: varejo_staging
+    marts:
+      +materialized: table
+      +schema: varejo_marts

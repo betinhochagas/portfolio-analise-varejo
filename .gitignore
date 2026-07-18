@@ -18,5 +18,16 @@ Thumbs.db
 # Power BI temporarios
 *.pbix.tmp
 
+# dbt (artefatos gerados)
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+dbt/profiles.yml
+
+# Credenciais / chaves de servico (NUNCA versionar)
+*-key.json
+*_key.json
+service-account*.json
+
 # Notas internas de sessao (nao publicar)
 _HANDOFF_STATUS.md
