@@ -44,3 +44,6 @@ service-account*.json
 
 # Notas internas de sessao (nao publicar)
 _HANDOFF_STATUS.md
+
+# Contexto interno para IA (nao publicar no repo)
+CLAUDE.md
