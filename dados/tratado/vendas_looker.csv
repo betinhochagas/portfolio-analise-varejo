@@ -1,4 +1,4 @@
-﻿venda_id,data_venda,ano,mes,ano_mes,trimestre,dia_semana,produto_id,produto,categoria,quantidade,preco_unitario,desconto,custo_unitario,custo_total,valor_total,lucro,margem_pct,regiao,cidade,canal,forma_pagamento,cliente_id
+venda_id,data_venda,ano,mes,ano_mes,trimestre,dia_semana,produto_id,produto,categoria,quantidade,preco_unitario,desconto,custo_unitario,custo_total,valor_total,lucro,margem_pct,regiao,cidade,canal,forma_pagamento,cliente_id
 104781,2024-01-17,2024,1,2024-01,T1,Wednesday,1019,Halteres,Esportes,1,290.04,0.05,107.57,107.57,275.54,167.97,61.0,Sul,Florianopolis,E-commerce,Pix,759
 104122,2024-01-17,2024,1,2024-01,T1,Wednesday,1023,Secador de Cabelo,Beleza,4,179.55,0.05,72.83,291.32,682.29,390.97,57.3,Centro-Oeste,Brasilia,App,Cartao De Debito,230
 105092,2024-01-17,2024,1,2024-01,T1,Wednesday,1013,Almofada,Casa e Decoracao,1,33.06,0.0,20.74,20.74,33.06,12.32,37.3,Norte,Manaus,E-commerce,Cartao De Debito,733

@@ -26,11 +26,11 @@ dados (ETL) até a modelagem, consultas SQL, análise em Python e dashboard de B
 
 ## 📊 Principais resultados
 
-- **Faturamento total:** R$ 12,3 milhões em 12.000 vendas
-- **Ticket médio:** R$ 1.029
+- **Faturamento total:** R$ 12,2 milhões em 12.000 vendas
+- **Ticket médio:** R$ 1.019
 - **Categoria líder:** Eletrônicos (≈70% do faturamento)
 - **Maior margem:** Alimentos e Vestuário (>60%)
-- **Região líder:** Sudeste
+- **Região líder:** Sudeste (≈45% do faturamento)
 
 ### Faturamento por categoria
 ![Faturamento por categoria](imagens/01_faturamento_categoria.png)

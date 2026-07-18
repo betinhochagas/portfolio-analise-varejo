@@ -65,6 +65,11 @@ REGIOES = {
     "Sudeste": ["Sao Paulo", "Rio de Janeiro", "Belo Horizonte"],
     "Sul": ["Curitiba", "Porto Alegre", "Florianopolis"],
 }
+# Pesos realistas: concentracao de vendas segue o mercado brasileiro
+# (Sudeste dominante, Norte com menor participacao)
+PESO_REGIAO = {
+    "Sudeste": 44, "Sul": 20, "Nordeste": 19, "Centro-Oeste": 9, "Norte": 8,
+}
 
 FORMAS_PAGAMENTO = ["Cartao de Credito", "Cartao de Debito", "Pix", "Boleto", "Dinheiro"]
 CANAIS = ["Loja Fisica", "E-commerce", "App"]
@@ -96,7 +101,9 @@ registros = []
 
 for i in range(N_VENDAS):
     prod = df_produtos.sample(1).iloc[0]
-    regiao = random.choice(list(REGIOES.keys()))
+    regiao = random.choices(
+        list(PESO_REGIAO.keys()), weights=list(PESO_REGIAO.values())
+    )[0]
     cidade = random.choice(REGIOES[regiao])
 
     # Data de venda entre 2024-01-01 e 2025-12-31
