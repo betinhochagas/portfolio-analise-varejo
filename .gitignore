@@ -17,3 +17,6 @@ Thumbs.db
 
 # Power BI temporarios
 *.pbix.tmp
+
+# Notas internas de sessao (nao publicar)
+_HANDOFF_STATUS.md

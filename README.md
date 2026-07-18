@@ -7,6 +7,14 @@ dados (ETL) até a modelagem, consultas SQL, análise em Python e dashboard de B
 > estratégicas para apoiar a tomada de decisão — simulando o dia a dia real de
 > um(a) Analista de Dados.
 
+### 📈 Dashboard ao vivo (Looker Studio)
+
+**➡️ [Abrir o "Painel de Vendas — Varejo"](https://lookerstudio.google.com/reporting/db132d4d-779f-4eca-bd0b-3385f7763813)**
+
+Painel interativo com 5 KPIs (Faturamento, Lucro, Ticket médio, Nº de vendas,
+Margem %) e gráficos de evolução mensal, categoria, região e canal.
+Acesso público — não é preciso login.
+
 ---
 
 ## 🎯 O que este projeto demonstra
@@ -17,7 +25,7 @@ dados (ETL) até a modelagem, consultas SQL, análise em Python e dashboard de B
 | **SQL** (JOINs, window functions, CTEs) | [`sql/analises.sql`](sql/analises.sql) |
 | **Modelagem de dados** (modelo estrela) | Banco SQLite: fato + dimensões |
 | **ETL / tratamento de dados** | [`scripts/02_etl.py`](scripts/02_etl.py) |
-| **Business Intelligence** | Dashboard (Power BI / Looker Studio) |
+| **Business Intelligence** | [Dashboard no Looker Studio](https://lookerstudio.google.com/reporting/db132d4d-779f-4eca-bd0b-3385f7763813) |
 | **Automação** | Pipeline reprodutível via scripts numerados |
 | **Git / versionamento** | Este repositório |
 | **Visualização & storytelling** | [`notebooks/analise_vendas.ipynb`](notebooks/analise_vendas.ipynb) |
