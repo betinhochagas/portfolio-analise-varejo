@@ -101,7 +101,7 @@ Demonstra os 5 pilares. Terraform / Docker / streaming são "cerejas" para depoi
 ## ✅ Checklist de progresso
 
 - [ ] Fase 0 — Reposicionamento (estrutura + README de arquitetura)
-- [ ] Fase 1 — BigQuery como DWH (dataset `raw` carregado)
+- [x] Fase 1 — BigQuery como DWH (dataset `raw` carregado) — ✅ **18/07/2026**: `portfolio-varejo.varejo_raw.raw_vendas`, 12.000 linhas, validado (total R$ 12.229.507,07)
 - [~] Fase 2 — dbt (staging → marts + testes + docs/lineage) — **scaffolding pronto** em `dbt/`, falta rodar após a Fase 1
 - [ ] Fase 3 — Ingestão de fonte real (dlt, carga incremental idempotente)
 - [~] Fase 4 — Orquestração (Airflow/Dagster via Docker) — **scaffolding pronto** em `orchestration/`, falta rodar após as Fases 1–2
