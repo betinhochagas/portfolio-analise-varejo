@@ -1,0 +1,19 @@
+# Ambiente virtual Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Banco de dados (gerado pelo ETL - pode ser recriado)
+# Comente a linha abaixo se quiser versionar o .db
+# dados/tratado/varejo.db
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Power BI temporarios
+*.pbix.tmp
