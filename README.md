@@ -17,6 +17,34 @@ Acesso público — não é preciso login.
 
 ---
 
+## 🏗️ Evolução: pipeline de Engenharia de Dados
+
+Além da análise (Analista de Dados), este projeto está sendo evoluído para uma
+**stack de dados moderna** — do dado bruto ao mart analítico, na nuvem,
+transformado como código, testado e **orquestrado**:
+
+```
+CSV tratado ──► BigQuery (raw) ──► dbt (staging → marts estrela) ──► testes ✓
+                    │                        │
+                    └──── Airflow (Docker) orquestra tudo ────┘
+```
+
+| Camada | Tecnologia | O que faz |
+|--------|-----------|-----------|
+| **Data Warehouse** | Google BigQuery | Camada `raw` (12.000 vendas) na nuvem |
+| **Transformação** | dbt | Modelo estrela (`fct_vendas` + dimensões) versionado em SQL |
+| **Qualidade** | dbt tests | 20 testes: `unique`, `not_null`, `relationships`, `accepted_values` |
+| **Orquestração** | Apache Airflow + Docker | DAG `carregar_raw → dbt_run → dbt_test`, agendado e com retry |
+| **IaC / CI-CD** | Terraform + GitHub Actions | Datasets como código + validação automática a cada PR |
+
+### DAG orquestrando o pipeline (Airflow)
+![DAG do pipeline no Airflow](imagens/05_airflow_dag.png)
+
+> 📋 O plano completo de evolução está em [`ROADMAP_DE.md`](ROADMAP_DE.md).
+> Código: [`dbt/`](dbt/) · [`orchestration/`](orchestration/) · [`infra/`](infra/)
+
+---
+
 ## 🎯 O que este projeto demonstra
 
 | Competência | Onde está no projeto |
