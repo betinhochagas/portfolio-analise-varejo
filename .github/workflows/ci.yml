@@ -29,18 +29,7 @@ jobs:
         working-directory: dbt
         run: dbt parse
 
-  sqlfluff:
-    name: Lint SQL (sqlfluff)
-    runs-on: ubuntu-latest
-    # Informativo por enquanto: o lint total de models com macros do dbt_utils
-    # exige o templater dbt. Deixamos nao-bloqueante ate configurar isso.
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - name: Instalar sqlfluff
-        run: pip install sqlfluff==3.1.0
-      - name: Lint dos models
-        run: sqlfluff lint dbt/models
+  # NOTA: o lint de SQL com sqlfluff foi removido do CI por enquanto — com o
+  # templater jinja ele nao resolve macros do dbt_utils (ex.: generate_surrogate_key)
+  # e falha. Para reativar de forma robusta, use o templater dbt (sqlfluff-templater-dbt),
+  # que compila via dbt e exige credenciais do BigQuery no CI (service account).
