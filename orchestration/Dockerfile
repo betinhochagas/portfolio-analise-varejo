@@ -9,6 +9,9 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends build-essential \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+# cria o diretorio da venv do dbt e da posse ao usuario airflow
+# (senao o `python -m venv` falha com Permission denied em /opt)
+RUN mkdir -p /opt/dbt-venv && chown -R airflow: /opt/dbt-venv
 USER airflow
 
 # venv isolada só para o dbt (evita conflito com o Airflow)

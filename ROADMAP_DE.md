@@ -104,7 +104,7 @@ Demonstra os 5 pilares. Terraform / Docker / streaming são "cerejas" para depoi
 - [x] Fase 1 — BigQuery como DWH (dataset `raw` carregado) — ✅ **18/07/2026**: `portfolio-varejo.varejo_raw.raw_vendas`, 12.000 linhas, validado (total R$ 12.229.507,07)
 - [x] Fase 2 — dbt (staging → marts + testes + docs/lineage) — ✅ **18/07/2026**: `dbt build` PASS=25 (4 models + 20 testes), star schema em `varejo_marts`, docs/lineage gerados
 - [ ] Fase 3 — Ingestão de fonte real (dlt, carga incremental idempotente)
-- [~] Fase 4 — Orquestração (Airflow/Dagster via Docker) — **scaffolding pronto** em `orchestration/`, falta rodar após as Fases 1–2
+- [x] Fase 4 — Orquestração (Airflow via Docker) — ✅ **18/07/2026**: DAG `pipeline_varejo` (carregar_raw → dbt_deps → dbt_run → dbt_test) rodou `success` de ponta a ponta
 - [~] Fase 5 — CI/CD (GitHub Actions) + Terraform + Docker — **scaffolding pronto** (`.github/workflows/`, `infra/`); Docker já na Fase 4
 - [ ] Fase 6 — Diferenciais (streaming, Spark, observabilidade)
 
