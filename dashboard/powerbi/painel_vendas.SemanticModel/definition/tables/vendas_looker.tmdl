@@ -1,0 +1,278 @@
+table vendas_looker
+	lineageTag: e1f88b85-c689-4c88-8aa6-f4791c04a6a0
+
+	measure Faturamento = SUM(vendas_looker[valor_total])
+		formatString: "R$" #,0.00
+		lineageTag: 45624a0c-1a2a-45cb-b82d-e694586ebdbb
+
+	measure 'Nº de Vendas' = COUNTROWS(vendas_looker)
+		formatString: #,0
+		lineageTag: 11738734-d01f-423b-97e4-aa2870c86439
+
+	measure 'Ticket Médio' = DIVIDE([Faturamento], [Nº de Vendas])
+		formatString: "R$" #,0.00
+		lineageTag: e5bd4c27-6718-4a30-bd22-897f363dc38c
+
+	measure 'Lucro Total' = SUM(vendas_looker[valor_total]) - SUM(vendas_looker[custo_total])
+		formatString: "R$" #,0.00
+		lineageTag: b1e2c3d4-5f6a-4b7c-8d9e-0a1b2c3d4e5f
+
+	measure 'Margem %' = DIVIDE([Lucro Total], [Faturamento])
+		formatString: 0.00%
+		lineageTag: c2f3d4e5-6a7b-4c8d-9e0f-1a2b3c4d5e6f
+
+	column venda_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 25a6d9fb-c508-4efc-9f6f-577aeda0e99f
+		summarizeBy: sum
+		sourceColumn: venda_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_venda
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f6207854-cffb-4ccb-84ae-5a38e6ea5517
+		summarizeBy: none
+		sourceColumn: data_venda
+
+		variation Variation
+			isDefault
+			relationship: 52cdb707-9c9c-4bbe-8e43-decaf013b42a
+			defaultHierarchy: LocalDateTable_d1781bbb-bb3b-4cd3-8dae-5599420cf099.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c95b99c-6086-4c26-a514-ee390936442a
+		summarizeBy: sum
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: int64
+		formatString: 0
+		lineageTag: d3a2ac74-e41a-4a14-9e32-cffb519737ef
+		summarizeBy: sum
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_mes
+		dataType: string
+		lineageTag: 764525c5-110e-41d7-9592-54913f9a6d66
+		summarizeBy: none
+		sourceColumn: ano_mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column trimestre
+		dataType: string
+		lineageTag: d438a50c-e40a-444f-a0cb-368eeb712402
+		summarizeBy: none
+		sourceColumn: trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_semana
+		dataType: string
+		lineageTag: 8c2c6a52-1983-4c73-baf4-d031558b4c0e
+		summarizeBy: none
+		sourceColumn: dia_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column produto_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 151e1ccf-03ad-4541-8892-e7ba54d75f1c
+		summarizeBy: sum
+		sourceColumn: produto_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column produto
+		dataType: string
+		lineageTag: 118def10-0d4c-4562-930a-c9e302996da7
+		summarizeBy: none
+		sourceColumn: produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: 65a6f4bd-c099-4c0a-b05c-b3758eccf7ec
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantidade
+		dataType: int64
+		formatString: 0
+		lineageTag: abd5ad2f-894b-4483-b941-10a7cdc9cbc4
+		summarizeBy: sum
+		sourceColumn: quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column preco_unitario
+		dataType: double
+		lineageTag: 4ac5130d-4991-4bbf-b082-5466078b0972
+		summarizeBy: sum
+		sourceColumn: preco_unitario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column desconto
+		dataType: double
+		lineageTag: d7739d49-943b-4d81-869b-bc67140bbfd1
+		summarizeBy: sum
+		sourceColumn: desconto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column custo_unitario
+		dataType: double
+		lineageTag: a22699eb-1dc7-4251-8278-46ae4577769a
+		summarizeBy: sum
+		sourceColumn: custo_unitario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column custo_total
+		dataType: double
+		lineageTag: e54ffc0d-497a-4513-a3ec-03adb6fd02a9
+		summarizeBy: sum
+		sourceColumn: custo_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_total
+		dataType: double
+		lineageTag: e01c1004-1589-41f3-9784-f9c0cce91b3f
+		summarizeBy: sum
+		sourceColumn: valor_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column margem_pct
+		dataType: double
+		lineageTag: 79fae375-af52-4cf1-8e2b-cc797b10f977
+		summarizeBy: sum
+		sourceColumn: margem_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column regiao
+		dataType: string
+		lineageTag: 6b968a97-9905-49db-8cb2-4556a2149449
+		summarizeBy: none
+		sourceColumn: regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: 989bb88e-6f3c-465b-8bf0-83dcb9662c88
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column canal
+		dataType: string
+		lineageTag: 65eba0a8-2a8e-4c10-877a-3f1e58f33342
+		summarizeBy: none
+		sourceColumn: canal
+
+		annotation SummarizationSetBy = Automatic
+
+	column forma_pagamento
+		dataType: string
+		lineageTag: 4497b3cf-b35c-4ca0-b58f-518d7979bbad
+		summarizeBy: none
+		sourceColumn: forma_pagamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b9735c16-8d3f-4f0f-9da7-811647903432
+		summarizeBy: sum
+		sourceColumn: cliente_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column lucro
+		dataType: double
+		lineageTag: c92b8a89-9c36-443f-9ad3-3850c7216555
+		summarizeBy: sum
+		sourceColumn: lucro
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition vendas_looker = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(
+				        File.Contents("C:\Engenharia de Dados\portfolio-varejo\dados\tratado\vendas_looker.csv"),
+				        [Delimiter = ",", Columns = 23, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+				    ),
+				    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars = true]),
+				    TiposBase = Table.TransformColumnTypes(Cabecalhos, {
+				        {"venda_id", Int64.Type},
+				        {"ano", Int64.Type},
+				        {"mes", Int64.Type},
+				        {"ano_mes", type text},
+				        {"trimestre", type text},
+				        {"dia_semana", type text},
+				        {"produto_id", Int64.Type},
+				        {"produto", type text},
+				        {"categoria", type text},
+				        {"quantidade", Int64.Type},
+				        {"regiao", type text},
+				        {"cidade", type text},
+				        {"canal", type text},
+				        {"forma_pagamento", type text},
+				        {"cliente_id", Int64.Type}
+				    }),
+				    TiposLocaleEUA = Table.TransformColumnTypes(TiposBase, {
+				        {"data_venda", type date},
+				        {"preco_unitario", type number},
+				        {"desconto", type number},
+				        {"custo_unitario", type number},
+				        {"custo_total", type number},
+				        {"valor_total", type number},
+				        {"lucro", type number},
+				        {"margem_pct", type number}
+				    }, "en-US")
+				in
+				    TiposLocaleEUA
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

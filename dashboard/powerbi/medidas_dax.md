@@ -14,11 +14,15 @@ Faturamento = SUM(vendas_looker[valor_total])
 ```
 Formato: **Moeda** → R$ Português (Brasil). Resultado esperado: **R$ 12.229.507,07**
 
-## 2. Lucro
+## 2. Lucro Total
 ```DAX
-Lucro = SUM(vendas_looker[lucro])
+Lucro Total = SUM(vendas_looker[valor_total]) - SUM(vendas_looker[custo_total])
 ```
 Formato: **Moeda** R$. Esperado: **R$ 4.810.714,97**
+> ⚠️ **Não** chame a medida de `Lucro`: colide com a coluna `lucro` (o Power BI
+> ignora maiúsc./minúsc. e trata `Lucro`/`lucro` como o mesmo nome). Por isso o
+> nome `Lucro Total`. E calculamos por `valor_total - custo_total` (= `lucro`),
+> evitando depender da coluna `lucro`.
 
 ## 3. Nº de Vendas
 ```DAX
@@ -34,9 +38,10 @@ Formato: **Moeda** R$. Esperado: **R$ 1.019,13**
 
 ## 5. Margem %
 ```DAX
-Margem % = DIVIDE([Lucro], [Faturamento])
+Margem % = DIVIDE([Lucro Total], [Faturamento])
 ```
 Formato: **Porcentagem** com 2 casas. Esperado: **39,34%**
+> Crie a `Lucro Total` **antes** desta, senão o Power BI acusa referência inválida.
 
 ---
 

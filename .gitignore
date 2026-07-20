@@ -18,6 +18,14 @@ Thumbs.db
 # Power BI temporarios
 *.pbix.tmp
 
+# Power BI Project (.pbip) — cache e settings locais/da maquina (nao versionar)
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/*.abf
+
+# .pbix binario antigo — substituido pelo .pbip (TMDL/PBIR) como fonte de verdade
+dashboard/powerbi/*.pbix
+
 # dbt (artefatos gerados)
 dbt/target/
 dbt/dbt_packages/

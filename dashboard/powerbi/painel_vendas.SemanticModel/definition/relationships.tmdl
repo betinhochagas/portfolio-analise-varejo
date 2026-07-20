@@ -1,0 +1,5 @@
+relationship 52cdb707-9c9c-4bbe-8e43-decaf013b42a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vendas_looker.data_venda
+	toColumn: LocalDateTable_d1781bbb-bb3b-4cd3-8dae-5599420cf099.Date
+
