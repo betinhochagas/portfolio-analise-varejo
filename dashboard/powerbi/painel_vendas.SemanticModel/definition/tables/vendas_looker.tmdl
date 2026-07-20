@@ -25,7 +25,7 @@ table vendas_looker
 		dataType: int64
 		formatString: 0
 		lineageTag: 25a6d9fb-c508-4efc-9f6f-577aeda0e99f
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: venda_id
 
 		annotation SummarizationSetBy = Automatic
@@ -50,7 +50,7 @@ table vendas_looker
 		dataType: int64
 		formatString: 0
 		lineageTag: 7c95b99c-6086-4c26-a514-ee390936442a
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: ano
 
 		annotation SummarizationSetBy = Automatic
@@ -59,7 +59,7 @@ table vendas_looker
 		dataType: int64
 		formatString: 0
 		lineageTag: d3a2ac74-e41a-4a14-9e32-cffb519737ef
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: mes
 
 		annotation SummarizationSetBy = Automatic
@@ -92,7 +92,7 @@ table vendas_looker
 		dataType: int64
 		formatString: 0
 		lineageTag: 151e1ccf-03ad-4541-8892-e7ba54d75f1c
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: produto_id
 
 		annotation SummarizationSetBy = Automatic
@@ -175,7 +175,7 @@ table vendas_looker
 	column margem_pct
 		dataType: double
 		lineageTag: 79fae375-af52-4cf1-8e2b-cc797b10f977
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: margem_pct
 
 		annotation SummarizationSetBy = Automatic
@@ -218,7 +218,7 @@ table vendas_looker
 		dataType: int64
 		formatString: 0
 		lineageTag: b9735c16-8d3f-4f0f-9da7-811647903432
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: cliente_id
 
 		annotation SummarizationSetBy = Automatic
@@ -237,8 +237,10 @@ table vendas_looker
 		mode: import
 		source =
 				let
+				    // Ajuste este caminho ao clonar o repositorio (pasta local do CSV tratado):
+				    PastaDados = "C:\Engenharia de Dados\portfolio-varejo\dados\tratado\",
 				    Fonte = Csv.Document(
-				        File.Contents("C:\Engenharia de Dados\portfolio-varejo\dados\tratado\vendas_looker.csv"),
+				        File.Contents(PastaDados & "vendas_looker.csv"),
 				        [Delimiter = ",", Columns = 23, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
 				    ),
 				    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars = true]),

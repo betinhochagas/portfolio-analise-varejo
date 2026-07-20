@@ -35,6 +35,11 @@ em **TMDL/PBIR** (Power BI *Developer Mode*), tratados como código.
 **Panorama (jan/2024 a jul/2026, dados fictícios):** R$ 12,23 mi de faturamento ·
 R$ 4,81 mi de lucro · **margem de 39,3%** · ticket médio de R$ 1.019 em 12.000 vendas.
 
+> ℹ️ **Nota metodológica:** os dados são **fictícios** (gerados com `Faker`). Os números
+> abaixo servem para **demonstrar o método** — pergunta → análise → recomendação — e não
+> são achados de um mercado real. Cada afirmação é sustentada por uma consulta em
+> [`sql/analises.sql`](sql/analises.sql), reproduzível sobre o banco do projeto.
+
 ### O que os dados mostram
 
 1. **Concentração de risco em Eletrônicos.** A categoria responde por **69,6%** do
