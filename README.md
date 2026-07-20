@@ -1,7 +1,7 @@
 # 🛒 Análise de Vendas de Varejo — Portfólio de Analista de Dados
 
 Projeto **end-to-end** de análise de dados de varejo: da geração e limpeza dos
-dados (ETL) até a modelagem, consultas SQL, análise em Python e dashboard de BI.
+dados (ETL) até a modelagem, consultas SQL, análise em Python e dashboards de BI.
 
 > **Objetivo:** transformar dados brutos e "sujos" de vendas em informações
 > estratégicas para apoiar a tomada de decisão — simulando o dia a dia real de
@@ -27,56 +27,13 @@ em **TMDL/PBIR** (Power BI *Developer Mode*), tratados como código.
 
 ---
 
-## 🏗️ Evolução: pipeline de Engenharia de Dados
-
-Além da análise (Analista de Dados), este projeto está sendo evoluído para uma
-**stack de dados moderna** — do dado bruto ao mart analítico, na nuvem,
-transformado como código, testado e **orquestrado**:
-
-```
-CSV tratado ──► BigQuery (raw) ──► dbt (staging → marts estrela) ──► testes ✓
-                    │                        │
-                    └──── Airflow (Docker) orquestra tudo ────┘
-```
-
-| Camada | Tecnologia | O que faz |
-|--------|-----------|-----------|
-| **Data Warehouse** | Google BigQuery | Camada `raw` (12.000 vendas) na nuvem |
-| **Transformação** | dbt | Modelo estrela (`fct_vendas` + dimensões) versionado em SQL |
-| **Qualidade** | dbt tests | 20 testes: `unique`, `not_null`, `relationships`, `accepted_values` |
-| **Orquestração** | Apache Airflow + Docker | DAG `carregar_raw → dbt_run → dbt_test`, agendado e com retry |
-| **IaC / CI-CD** | Terraform + GitHub Actions | Datasets como código + validação automática a cada PR |
-
-### DAG orquestrando o pipeline (Airflow)
-![DAG do pipeline no Airflow](imagens/05_airflow_dag.png)
-
-> 📋 O plano completo de evolução está em [`ROADMAP_DE.md`](ROADMAP_DE.md).
-> Código: [`dbt/`](dbt/) · [`orchestration/`](orchestration/) · [`infra/`](infra/)
-
----
-
-## 🎯 O que este projeto demonstra
-
-| Competência | Onde está no projeto |
-|-------------|----------------------|
-| **Python** (pandas, numpy) | Geração de dados, ETL e análise |
-| **SQL** (JOINs, window functions, CTEs) | [`sql/analises.sql`](sql/analises.sql) |
-| **Modelagem de dados** (modelo estrela) | Banco SQLite: fato + dimensões |
-| **ETL / tratamento de dados** | [`scripts/02_etl.py`](scripts/02_etl.py) |
-| **Business Intelligence** | [Dashboard no Looker Studio](https://lookerstudio.google.com/reporting/db132d4d-779f-4eca-bd0b-3385f7763813) |
-| **Automação** | Pipeline reprodutível via scripts numerados |
-| **Git / versionamento** | Este repositório |
-| **Visualização & storytelling** | [`notebooks/analise_vendas.ipynb`](notebooks/analise_vendas.ipynb) |
-
----
-
 ## 💼 Resumo executivo — o caso de negócio
 
 > **Pergunta central:** *como a rede pode **aumentar o lucro** sem depender apenas de
 > crescer o volume de vendas?*
 
-**Panorama (24 meses, dados fictícios):** R$ 12,23 mi de faturamento · R$ 4,81 mi de
-lucro · **margem de 39,3%** · ticket médio de R$ 1.019 em 12.000 vendas.
+**Panorama (jan/2024 a jul/2026, dados fictícios):** R$ 12,23 mi de faturamento ·
+R$ 4,81 mi de lucro · **margem de 39,3%** · ticket médio de R$ 1.019 em 12.000 vendas.
 
 ### O que os dados mostram
 
@@ -120,6 +77,50 @@ lucro · **margem de 39,3%** · ticket médio de R$ 1.019 em 12.000 vendas.
 
 ---
 
+## 🎯 O que este projeto demonstra
+
+| Competência | Onde está no projeto |
+|-------------|----------------------|
+| **Python** (pandas, numpy) | Geração de dados, ETL e análise |
+| **SQL** (JOINs, window functions, CTEs) | [`sql/analises.sql`](sql/analises.sql) |
+| **Modelagem de dados** (modelo estrela) | Banco SQLite: fato + dimensões |
+| **ETL / tratamento de dados** | [`scripts/02_etl.py`](scripts/02_etl.py) |
+| **Power BI** (DAX · Power Query · TMDL) | Modelo e visuais como código — [`dashboard/powerbi/`](dashboard/powerbi/) |
+| **Business Intelligence** | Dois dashboards: [Looker Studio](https://lookerstudio.google.com/reporting/db132d4d-779f-4eca-bd0b-3385f7763813) (ao vivo) + Power BI |
+| **Storytelling com dados** | Resumo executivo (número → insight → recomendação) |
+| **Automação / reprodutibilidade** | Pipeline via scripts numerados (seeds fixas) |
+| **Git / versionamento** | Este repositório |
+
+---
+
+## 🏗️ Bônus: pipeline de Engenharia de Dados
+
+Além da análise (foco de Analista de Dados), o projeto foi evoluído para uma
+**stack de dados moderna** — do dado bruto ao mart analítico, na nuvem,
+transformado como código, testado e **orquestrado**:
+
+```
+CSV tratado ──► BigQuery (raw) ──► dbt (staging → marts estrela) ──► testes ✓
+                    │                        │
+                    └──── Airflow (Docker) orquestra tudo ────┘
+```
+
+| Camada | Tecnologia | O que faz |
+|--------|-----------|-----------|
+| **Data Warehouse** | Google BigQuery | Camada `raw` (12.000 vendas) na nuvem |
+| **Transformação** | dbt | Modelo estrela (`fct_vendas` + dimensões) versionado em SQL |
+| **Qualidade** | dbt tests | 20 testes: `unique`, `not_null`, `relationships`, `accepted_values` |
+| **Orquestração** | Apache Airflow + Docker | DAG `carregar_raw → dbt_run → dbt_test`, agendado e com retry |
+| **IaC / CI-CD** | Terraform + GitHub Actions | Datasets como código + validação automática a cada PR |
+
+### DAG orquestrando o pipeline (Airflow)
+![DAG do pipeline no Airflow](imagens/05_airflow_dag.png)
+
+> 📋 O plano completo de evolução está em [`ROADMAP_DE.md`](ROADMAP_DE.md).
+> Código: [`dbt/`](dbt/) · [`orchestration/`](orchestration/) · [`infra/`](infra/)
+
+---
+
 ## 🗂️ Estrutura do projeto
 
 ```
@@ -135,7 +136,9 @@ portfolio-varejo/
 │   └── analises.sql            # 10 consultas de negócio (JOIN, LAG, RANK, CTE...)
 ├── notebooks/
 │   └── analise_vendas.ipynb    # análise exploratória com gráficos
-├── dashboard/          # arquivo do Power BI / link do Looker Studio
+├── dashboard/
+│   ├── powerbi/                # projeto .pbip (modelo TMDL + relatório PBIR) — dashboard como código
+│   └── GUIA_DASHBOARD.md       # guia do dashboard no Looker Studio
 ├── imagens/            # gráficos exportados
 ├── requirements.txt
 └── README.md
@@ -193,14 +196,17 @@ jupyter notebook notebooks/analise_vendas.ipynb
 ## 🛠️ Tecnologias
 
 `Python` · `pandas` · `numpy` · `matplotlib` · `seaborn` · `SQL` · `SQLite` ·
-`Jupyter` · `Power BI / Looker Studio` · `Git`
+`Jupyter` · `Power BI` (DAX · Power Query · TMDL) · `Looker Studio` · `Git`
 
 ---
 
 ## 👤 Autor
 
-**Roberto Chagas** — Analista de Dados
-📧 robertochagas.ti@gmail.com
+**Roberto Chagas** — Desenvolvedor em transição para **Análise de Dados**.
+Uno base técnica sólida (programação, SQL, Python, Git) com foco em transformar
+dados em decisão de negócio.
+
+📧 robertochagas.ti@gmail.com · 💻 [github.com/betinhochagas](https://github.com/betinhochagas)
 
 > Projeto desenvolvido como portfólio para vagas de Análise de Dados.
 > Os dados são **fictícios**, gerados via `Faker` para fins de demonstração.

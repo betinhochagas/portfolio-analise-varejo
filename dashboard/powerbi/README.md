@@ -6,6 +6,11 @@ na maioria das vagas de Analista no Brasil). Mesmo CSV, mesmos KPIs e gráficos.
 **Fonte de dados:** `../../dados/tratado/vendas_looker.csv`
 **Medidas DAX:** ver [`medidas_dax.md`](medidas_dax.md)
 
+> ℹ️ **Estado atual:** o painel já está pronto como **projeto `.pbip`** (Power BI
+> *Developer Mode*) em `painel_vendas.pbip` — modelo em **TMDL** e visuais em **PBIR**,
+> versionados como código. Este guia documenta o **passo a passo de construção**
+> (referência de como o dashboard foi feito e de como reconstruí-lo do CSV).
+
 ---
 
 ## 0. Instalar o Power BI Desktop
@@ -74,7 +79,7 @@ as 3 barras/rosca embaixo. Ordene as barras por valor decrescente
 ## 4. Formatar e salvar
 - Título do relatório: **"Painel de Vendas — Varejo"**.
 - Tema: **Exibir → Temas** (escolha um escuro pra combinar com o Looker, se quiser).
-- Salve como: `dashboard/powerbi/painel_vendas.pbix`.
+- Salve como projeto **`.pbip`** (*Developer Mode*): `dashboard/powerbi/painel_vendas.pbip`.
 - Exporte um print da tela como `imagens/06_powerbi_dashboard.png` para o README
   principal.
 
